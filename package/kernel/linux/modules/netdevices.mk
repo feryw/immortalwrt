@@ -1947,7 +1947,7 @@ $(eval $(call KernelPackage,mtk-t7xx))
 define KernelPackage/rpmsg-wwan-ctrl
   SUBMENU:=$(NETWORK_DEVICES_MENU)
   TITLE:=RPMSG WWAN Control
-  DEPENDS:=@LINUX_6_1||LINUX_6_6 +kmod-wwan
+  DEPENDS:=@LINUX_6_1||LINUX_6_6||LINUX_6_12 +kmod-wwan
   KCONFIG:=CONFIG_RPMSG_WWAN_CTRL
   FILES:=$(LINUX_DIR)/drivers/net/wwan/rpmsg_wwan_ctrl.ko
   AUTOLOAD:=$(call AutoProbe,rpmsg_wwan_ctrl)
