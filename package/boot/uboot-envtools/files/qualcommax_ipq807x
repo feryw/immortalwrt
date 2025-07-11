@@ -24,7 +24,8 @@ zyxel,nbg7815)
 	[ -n "$idx" ] && \
 		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x10000" "0x10000" "1"
 	;;
-edimax,cax1800)
+edimax,cax1800|\
+zte,mf269)
 	idx="$(find_mtd_index 0:appsblenv)"
 	[ -n "$idx" ] && \
 		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x10000" "0x20000"
@@ -37,6 +38,11 @@ linksys,mx8500)
 	[ -n "$idx" ] && \
 		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x40000" "0x20000" "2"
 	;;
+linksys,mx4300)
+	idx="$(find_mtd_index u_env)"
+	[ -n "$idx" ] && \
+		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x40000" "0x40000" "1"
+	;;
 netgear,sxr80|\
 netgear,sxs80|\
 tplink,eap660hd-v1)
@@ -45,8 +51,11 @@ tplink,eap660hd-v1)
 		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x40000" "0x20000"
 	;;
 redmi,ax6|\
+redmi,ax6-stock|\
 xiaomi,ax3600|\
-xiaomi,ax9000)
+xiaomi,ax3600-stock|\
+xiaomi,ax9000|\
+xiaomi,ax9000-stock)
 	idx="$(find_mtd_index 0:appsblenv)"
 	[ -n "$idx" ] && \
 		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x10000" "0x20000"

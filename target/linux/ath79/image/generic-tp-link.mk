@@ -104,7 +104,7 @@ define Device/tplink_archer-c6-v2
   DEVICE_MODEL := Archer C6
   DEVICE_VARIANT := v2 (EU/RU/JP)
   TPLINK_BOARD_ID := ARCHER-C6-V2
-  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9888-ct
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9888-ct -ath10k-board-qca9888 ipq-wifi-tplink_archer-c6-v2
 endef
 TARGET_DEVICES += tplink_archer-c6-v2
 
@@ -222,6 +222,7 @@ define Device/tplink_archer-d50-v1
   TPLINK_FLASHLAYOUT := 8Mqca
   KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma | \
 	tplink-v2-header -s -V "ver. 1.0"
+  DEFAULT := n
 endef
 TARGET_DEVICES += tplink_archer-d50-v1
 
@@ -520,7 +521,7 @@ define Device/tplink_deco-s4-v2
   IMAGE_SIZE := 13824k
   DEVICE_MODEL := Deco S4
   DEVICE_VARIANT := v2
-  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9888-ct uencrypt-mbedtls
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca9888-ct uencrypt-openssl
   SUPPORTED_DEVICES += deco-s4-v2
   TPLINK_BOARD_ID := DECO-S4-V2
 endef

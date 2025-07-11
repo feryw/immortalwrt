@@ -71,17 +71,26 @@ platform_do_upgrade() {
 	bananapi,bpi-r3-mini|\
 	bananapi,bpi-r4|\
 	bananapi,bpi-r4-poe|\
+	cetron,ct3003-ubootmod|\
+	cmcc,a10-ubootmod|\
 	cmcc,rax3000m|\
+	cmcc,rax3000me|\
+	cudy,tr3000-v1-ubootmod|\
 	gatonetworks,gdsp|\
 	h3c,magic-nx30-pro|\
+	imou,lc-hx3001|\
 	jcg,q30-pro|\
 	jdcloud,re-cp-03|\
+	konka,komi-a31|\
+	livinet,zr-3020-ubootmod|\
 	mediatek,mt7981-rfb|\
 	mediatek,mt7988a-rfb|\
 	mercusys,mr90x-v1-ubi|\
+	netis,nx31|\
 	nokia,ea0326gmp|\
 	openwrt,one|\
 	netcore,n60|\
+	netcore,n60-pro|\
 	qihoo,360t7|\
 	routerich,ax3000-ubootmod|\
 	tplink,tl-xdr4288|\
@@ -102,6 +111,7 @@ platform_do_upgrade() {
 	glinet,gl-mt6000|\
 	glinet,gl-x3000|\
 	glinet,gl-xe3000|\
+	huasifei,wh3000-emmc|\
 	smartrg,sdg-8612|\
 	smartrg,sdg-8614|\
 	smartrg,sdg-8622|\
@@ -113,6 +123,7 @@ platform_do_upgrade() {
 		CI_ROOTPART="rootfs"
 		emmc_do_upgrade "$1"
 		;;
+	asus,rt-ax52|\
 	asus,rt-ax59u|\
 	asus,tuf-ax4200|\
 	asus,tuf-ax6000)
@@ -120,9 +131,14 @@ platform_do_upgrade() {
 		CI_KERNPART="linux"
 		nand_do_upgrade "$1"
 		;;
+	cudy,wr3000h-v1)
+		CI_UBIPART="ubi"
+		nand_do_upgrade "$1"
+		;;
 	cudy,re3000-v1|\
 	cudy,wr3000-v1|\
-	yuncore,ax835)
+	yuncore,ax835|\
+	wavlink,wl-wn573hx3)
 		default_do_upgrade "$1"
 		;;
 	dlink,aquila-pro-ai-m30-a1|\
@@ -130,7 +146,9 @@ platform_do_upgrade() {
 		fw_setenv sw_tryactive 0
 		nand_do_upgrade "$1"
 		;;
+	mercusys,mr80x-v3|\
 	mercusys,mr90x-v1|\
+	tplink,archer-ax80-v1|\
 	tplink,re6000xd)
 		CI_UBIPART="ubi0"
 		nand_do_upgrade "$1"
@@ -183,7 +201,8 @@ platform_check_image() {
 	bananapi,bpi-r3-mini|\
 	bananapi,bpi-r4|\
 	bananapi,bpi-r4-poe|\
-	cmcc,rax3000m)
+	cmcc,rax3000m|\
+	cmcc,rax3000me)
 		[ "$magic" != "d00dfeed" ] && {
 			echo "Invalid image type."
 			return 1
@@ -201,15 +220,6 @@ platform_check_image() {
 
 platform_copy_config() {
 	case "$(board_name)" in
-	bananapi,bpi-r3|\
-	bananapi,bpi-r3-mini|\
-	bananapi,bpi-r4|\
-	bananapi,bpi-r4-poe|\
-	cmcc,rax3000m)
-		if [ "$CI_METHOD" = "emmc" ]; then
-			emmc_copy_config
-		fi
-		;;
 	acer,predator-w6|\
 	acer,predator-w6d|\
 	acer,vero-w6m|\
@@ -218,6 +228,7 @@ platform_copy_config() {
 	glinet,gl-mt6000|\
 	glinet,gl-x3000|\
 	glinet,gl-xe3000|\
+	huasifei,wh3000-emmc|\
 	jdcloud,re-cp-03|\
 	smartrg,sdg-8612|\
 	smartrg,sdg-8614|\
@@ -229,6 +240,16 @@ platform_copy_config() {
 	ubnt,unifi-6-plus)
 		emmc_copy_config
 		;;
+	bananapi,bpi-r3|\
+	bananapi,bpi-r3-mini|\
+	bananapi,bpi-r4|\
+	bananapi,bpi-r4-poe|\
+	cmcc,rax3000m|\
+	cmcc,rax3000me)
+		if [ "$CI_METHOD" = "emmc" ]; then
+			emmc_copy_config
+		fi
+		;;
 	esac
 }
 
@@ -236,6 +257,7 @@ platform_pre_upgrade() {
 	local board=$(board_name)
 
 	case "$board" in
+	asus,rt-ax52|\
 	asus,rt-ax59u|\
 	asus,tuf-ax4200|\
 	asus,tuf-ax6000)
