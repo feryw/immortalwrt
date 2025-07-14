@@ -8,7 +8,7 @@ BOARDNAME:=Snapdragon 210/410/615 chipsets
 FEATURES:=ext4 usb usbgadget gpio fpu rootfs-part boot-part squashfs
 SUBTARGETS:=msm8916
 
-KERNEL_PATCHVER:=6.6
+KERNEL_PATCHVER:=6.12
 
 define Target/Description
 	Build firmware images for various Snapdragon 210/410/615 based devices
