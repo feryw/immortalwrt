@@ -4,8 +4,10 @@ include $(TOPDIR)/rules.mk
 
 ARCH:=arm
 BOARD:=msm89xx
-BOARDNAME:=Snapdragon 210/410/615 chipsets
+BOARDNAME:=Board based on Snapdragon 210/410/615 chipsets
 FEATURES:=ext4 usb usbgadget gpio fpu rootfs-part boot-part squashfs
+CPU_TYPE:=cortex-a7
+CPU_SUBTYPE:=neon-vfpv4
 SUBTARGETS:=msm8916
 
 KERNEL_PATCHVER:=6.12
