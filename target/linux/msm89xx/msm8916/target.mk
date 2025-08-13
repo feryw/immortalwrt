@@ -6,5 +6,5 @@ CPU_SUBTYPE:=neon-vfpv4
 
 define Target/Description
 	Build firmware images for msm8916 based boards.
-	This firmware features a 64 bit kernel.
+	This firmware features a 32 bit kernel.
 endef
