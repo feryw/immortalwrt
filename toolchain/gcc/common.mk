@@ -168,11 +168,6 @@ ifeq ($(CONFIG_arm),y)
 		--with-float=hard
   endif
 
-  # Skip libsanitizer on musl to avoid time64 header/ABI clashes
-  ifeq ($(CONFIG_USE_MUSL),y)
-    GCC_CONFIGURE += --disable-libsanitizer
-  endif
-
   # Do not let TARGET_CFLAGS get poisoned by extra CPU optimization flags
   # that do not belong here. The cpu,fpu type should be specified via
   # --with-cpu and --with-fpu for ARM and not CFLAGS.
