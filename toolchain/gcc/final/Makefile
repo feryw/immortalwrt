@@ -1,5 +1,9 @@
 GCC_VARIANT:=final
 
+# Disable _TIME_BITS=64 during host libstdc++ build to avoid musl __REDIR conflict
+TARGET_CFLAGS += -U_TIME_BITS
+TARGET_CXXFLAGS += -U_TIME_BITS
+
 include ../common.mk
 
 GCC_CONFIGURE += \
