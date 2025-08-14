@@ -23,6 +23,7 @@ ramips_setup_interfaces()
 	mercusys,mr70x-v1|\
 	netgear,wax202|\
 	sim,simax1800t|\
+	sim,simax1800u|\
 	tplink,mr600-v2-eu|\
 	xiaomi,mi-router-3-pro|\
 	xiaomi,mi-router-ac2100|\
@@ -91,6 +92,7 @@ ramips_setup_interfaces()
 	asiarf,ap7621-nv1|\
 	beeline,smartbox-flash|\
 	beeline,smartbox-giga|\
+	c-life,xg1|\
 	elecom,wmc-x1800gst|\
 	elecom,wrc-x1800gs|\
 	gemtek,wvrtm-127acn|\
